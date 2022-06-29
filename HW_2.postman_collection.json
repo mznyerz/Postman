@@ -21,7 +21,7 @@
 							"});\r",
 							"//Проверить, что в body приходит правильный string.\r",
 							"pm.test('True string in body', function (){\r",
-							"    pm.expect(resp).to.include('This is the first responce from server!ss')\r",
+							"    pm.response.to.have.body('This is the first responce from server!ss')\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -370,7 +370,7 @@
 							"    pm.expect(resp.person.u_salary_5_years).to.eql(req.salary*4.2)\r",
 							"})\r",
 							"// ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.\r",
-							"Object.values(resp.person).forEach((el) => {\r",
+							"Object.entries(resp.person).forEach((el) => {\r",
 							"    console.log(el)\r",
 							"})"
 						],
