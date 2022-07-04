@@ -298,7 +298,22 @@
 							"            pm.expect(resp).ownProperty(i)\r",
 							"            })\r",
 							"        }\r",
-							"}"
+							"}\r",
+							"//4.3(E)\r",
+							"for (i in salinc){\r",
+							"    let ft = `response have key: ${i}`\r",
+							"    let st = `&& response.${i} = request.salary*${sal[i]}`\r",
+							"    if (typeof(salinc[i]) !== 'number'){\r",
+							"        st = ``\r",
+							"        resp[i] = NaN\r",
+							"    };\r",
+							"    pm.test(ft+st, function (){\r",
+							"        pm.expect(resp).ownProperty(i)\r",
+							"        pm.expect(resp[i]).to.eql(req.salary*salinc[i])\r",
+							"        })\r",
+							"}\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
