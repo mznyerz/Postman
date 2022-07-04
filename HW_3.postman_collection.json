@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8dd7e66c-746c-4b97-84ff-f62bd8f154fd",
+		"_postman_id": "aff5600c-6325-4729-9bf1-e66dc55f9f45",
 		"name": "HomeWork_3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18523166"
@@ -107,9 +107,9 @@
 							"let resp_salary = resp.salary;\r",
 							"let req_salary = req.salary;\r",
 							"console.log(resp_salary, req_salary)\r",
-							"for (i = 0, j = 1; i < resp_salary.length, j < resp_salary.length+1 ; i++,j++ ){\r",
-							"        pm.test(`response.salary(${+resp_salary[i]}); index:${i} == request.salary(${+req_salary*j})`, function () {\r",
-							"        pm.expect(+resp_salary[i]).to.eql(+req_salary*j)\r",
+							"for (i = 0; i < resp_salary.length; i++){\r",
+							"        pm.test(`response.salary(${+resp_salary[i]}); index:${i} == request.salary(${+req_salary*(i+1)})`, function () {\r",
+							"        pm.expect(+resp_salary[i]).to.eql(+req_salary*(i+1))\r",
 							"    })\r",
 							"}\r",
 							""
@@ -298,7 +298,22 @@
 							"            pm.expect(resp).ownProperty(i)\r",
 							"            })\r",
 							"        }\r",
-							"}"
+							"}\r",
+							"//4.3(E)\r",
+							"for (i in salinc){\r",
+							"    let ft = `response have key: ${i}`\r",
+							"    let st = `&& response.${i} = request.salary*${sal[i]}`\r",
+							"    if (typeof(salinc[i]) !== 'number'){\r",
+							"        st = ``\r",
+							"        resp[i] = NaN\r",
+							"    };\r",
+							"    pm.test(ft+st, function (){\r",
+							"        pm.expect(resp).ownProperty(i)\r",
+							"        pm.expect(resp[i]).to.eql(req.salary*salinc[i])\r",
+							"        })\r",
+							"}\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
